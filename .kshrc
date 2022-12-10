@@ -1,0 +1,5 @@
+alias rm="rm -rf"
+alias cp="cp -r"
+alias mkdir="mkdir -p"
+alias g="git"
+export PS1="\[\e[35m\]\w\[\e[m\] \[\e[35m\]>\[\e[m\] "

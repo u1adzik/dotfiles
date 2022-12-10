@@ -1,0 +1,90 @@
+set shell ksh
+
+cmd unarchive ${{
+    case "$f" in
+        *.zip) unzip "$f";;
+        *.tar.xz) tar -xvf "$f";;
+        *.tar.gz) tar -xzvf "$f";;
+        *.tar.bz2) tar -xjvf "$f";;
+        *.tar) tar -xvf "$f";;
+        *) echo "Unsupported format";;
+    esac
+}}
+cmd open ${{
+    case "$f" in
+        *.pdf)   setsid -f zathura "$f";;
+        *.epub)  setsid -f zathura "$f";;
+        *.jpg)   setsid -f sxiv    "$f";;
+        *.jpeg)  setsid -f sxiv    "$f";;
+        *.png)   setsid -f sxiv    "$f";;
+        *.gif)   setsid -f sxiv    "$f";;
+        *.bmp)   setsid -f sxiv    "$f";;
+        *.avi)   setsid -f mpv     "$f";;
+        *.flv)   setsid -f mpv     "$f";;
+        *.wav)   setsid -f mpv     "$f";;
+        *.webm)  setsid -f mpv     "$f";;
+        *.wma)   setsid -f mpv     "$f";;
+        *.wmv)   setsid -f mpv     "$f";;
+        *.m2v)   setsid -f mpv     "$f";;
+        *.m4a)   setsid -f mpv     "$f";;
+        *.m4v)   setsid -f mpv     "$f";;
+        *.mkv)   setsid -f mpv     "$f";;
+        *.mov)   setsid -f mpv     "$f";;
+        *.mp3)   setsid -f mpv     "$f";;
+        *.mp4)   setsid -f mpv     "$f";;
+        *.mpeg)  setsid -f mpv     "$f";;
+        *.mpg)   setsid -f mpv     "$f";;
+        *)       nvim    "$f";;
+    esac
+}}
+
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    nvim "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
+cmd mkdir %IFS=" "; mkdir -- "$*"
+cmd open-with %"$@" $fx
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+map au unarchive
+map az zip
+map at tar
+map ag targz
+map ab tarbz2
+map <enter> open
+map ` push :open-with<space>
+map md push :mkdir<space>
+map m
+map o
+map n
+map e
+map f
+map "'"
+map '"'
+map . set hidden!
+map DD delete
+map p paste
+map d cut
+map y copy
+map A rename
+map <c-r> reload
+map br push :bulk-rename<enter>
