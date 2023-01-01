@@ -1,4 +1,4 @@
-set shell ksh
+set shell zsh
 
 cmd unarchive ${{
     case "$f" in
