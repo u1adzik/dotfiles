@@ -1,4 +1,4 @@
-set font                        "terminus 11"
+set font                        "iosevka 11"
 set notification-error-bg       "#586e75" # base01  # seem not work
 set notification-error-fg       "#dc322f" # red
 set notification-warning-bg     "#586e75" # base01
