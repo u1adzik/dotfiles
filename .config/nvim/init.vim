@@ -16,7 +16,6 @@ set laststatus=2 noruler noshowmode shortmess=F
 call plug#begin()
     Plug 'itchyny/lightline.vim'
     Plug 'lifepillar/vim-solarized8'
-    Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 let g:lightline = {
@@ -25,14 +24,3 @@ let g:lightline = {
 
 colorscheme solarized8
 set termguicolors
-
-" use <tab> to trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
