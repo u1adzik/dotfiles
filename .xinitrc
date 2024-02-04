@@ -1,4 +1,4 @@
-setxkbmap "by,ru" "latin,winkeys" "grp:alt_shift_toggle" &
+setxkbmap "by,ru" "latin,winkeys" "grp:ctrl_space_toggle" &
 xsetroot -cursor_name left_ptr &
 xcalib -d :0 /usr/share/color/icc/colord/NV156FHM_N61.icm &
 picom -b &
