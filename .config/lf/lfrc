@@ -12,28 +12,28 @@ cmd unarchive ${{
 }}
 cmd open ${{
     case "$f" in
-        *.pdf)   setsid -f zathura "$f";;
-        *.epub)  setsid -f zathura "$f";;
-        *.jpg)   setsid -f sxiv    "$f";;
-        *.jpeg)  setsid -f sxiv    "$f";;
-        *.png)   setsid -f sxiv    "$f";;
-        *.gif)   setsid -f sxiv    "$f";;
-        *.bmp)   setsid -f sxiv    "$f";;
-        *.avi)   setsid -f mpv     "$f";;
-        *.flv)   setsid -f mpv     "$f";;
-        *.wav)   setsid -f mpv     "$f";;
-        *.webm)  setsid -f mpv     "$f";;
-        *.wma)   setsid -f mpv     "$f";;
-        *.wmv)   setsid -f mpv     "$f";;
-        *.m2v)   setsid -f mpv     "$f";;
-        *.m4a)   setsid -f mpv     "$f";;
-        *.m4v)   setsid -f mpv     "$f";;
-        *.mkv)   setsid -f mpv     "$f";;
-        *.mov)   setsid -f mpv     "$f";;
-        *.mp3)   setsid -f mpv     "$f";;
-        *.mp4)   setsid -f mpv     "$f";;
-        *.mpeg)  setsid -f mpv     "$f";;
-        *.mpg)   setsid -f mpv     "$f";;
+        *.pdf)   zathura "$f";;
+        *.epub)  zathura "$f";;
+        *.jpg)   sxiv    "$f";;
+        *.jpeg)  sxiv    "$f";;
+        *.png)   sxiv    "$f";;
+        *.gif)   sxiv    "$f";;
+        *.bmp)   sxiv    "$f";;
+        *.avi)   mpv     "$f";;
+        *.flv)   mpv     "$f";;
+        *.wav)   mpv     "$f";;
+        *.webm)  mpv     "$f";;
+        *.wma)   mpv     "$f";;
+        *.wmv)   mpv     "$f";;
+        *.m2v)   mpv     "$f";;
+        *.m4a)   mpv     "$f";;
+        *.m4v)   mpv     "$f";;
+        *.mkv)   mpv     "$f";;
+        *.mov)   mpv     "$f";;
+        *.mp3)   mpv     "$f";;
+        *.mp4)   mpv     "$f";;
+        *.mpeg)  mpv     "$f";;
+        *.mpg)   mpv     "$f";;
         *)       nvim    "$f";;
     esac
 }}
