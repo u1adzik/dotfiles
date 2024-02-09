@@ -12,7 +12,7 @@ widget = {
         for iface, params in pairs(t) do
             if params.wireless then
                 if params.wireless.ssid then
-                    r[#r + 1] = string.format('📶%s', params.wireless.ssid)
+                    r[#r + 1] = string.format('CON: %s', params.wireless.ssid)
                 end
             end
         end
